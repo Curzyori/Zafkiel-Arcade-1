@@ -44,12 +44,12 @@ app.use((req, res, next) => {
 app.use('/api', apiRoutes);
 
 // Serve static frontend files
-const distPath = path.join(__dirname, '../web/dist');
+// On Vercel, dist is moved to root via build script
+const distPath = isProduction ? path.join(process.cwd(), 'dist') : path.join(__dirname, '../web/dist');
 app.use(express.static(distPath));
 
 // Catch-all route to serve frontend index.html
 app.get(/.*/, (req, res) => {
-  // If request is for /api, don't serve index.html (should have been handled above)
   if (req.url.startsWith('/api')) {
     return res.status(404).json({ success: false, message: 'API endpoint not found' });
   }
@@ -57,7 +57,7 @@ app.get(/.*/, (req, res) => {
   const indexPath = path.join(distPath, 'index.html');
   res.sendFile(indexPath, (err) => {
     if (err) {
-      res.status(404).send("Frontend build not found. Please ensure 'npm run build' was executed.");
+      res.status(404).send(`Frontend build not found at ${distPath}. Please ensure 'npm run build' was executed.`);
     }
   });
 });

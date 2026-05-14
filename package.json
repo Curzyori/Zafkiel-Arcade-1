@@ -7,13 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node interface/api/server.js",
     "dev": "nodemon interface/api/server.js",
-    "build": "cd interface/web && npm install && npm run build"
+    "build": "cd interface/web && npm install && npm run build && mv dist ../../dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@supabase/supabase-js": "^2.105.4",
+    "@supabase/supabase-js": "^2.49.1",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
