@@ -1,111 +1,140 @@
-# Zafkiel Arcade 1: Emperor of Time 🕒🌑
+<p align="center">
+  <img src="assets/header.png" alt="Zafkiel Arcade Header" width="100%"/>
+</p>
 
-![Zafkiel Arcade Header](assets/header.png)
+<h1 align="center">Zafkiel Arcade</h1>
+<p align="center">
+  <strong>Dark Gothic & Time-Manipulating Survival Game Engine</strong>
+</p>
 
-[![Version](https://img.shields.io/badge/version-1.0.0-crimson.svg)](https://github.com/Curzyori/Zafkiel-Arcade-1)
-[![License](https://img.shields.io/badge/license-MIT-gold.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Web%20%7C%20Linux-black.svg)](https://github.com/Curzyori/Zafkiel-Arcade-1)
-[![Stack](https://img.shields.io/badge/stack-React%20%7C%20Express%20%7C%20SQLite-blue.svg)](https://github.com/Curzyori/Zafkiel-Arcade-1)
+<div align="center">
 
-**Zafkiel Arcade** is a high-stakes, time-manipulating survival game inspired by the aesthetic of *Kurumi Tokisaki*. Built with a robust **Modular Monolith** architecture, it combines real-time game logic with secure backend persistence and a stunning Gothic-Crimson interface.
+[![Stars](https://img.shields.io/github/stars/Curzyori/zafkiel-arcade?style=for-the-badge&color=crimson)](https://github.com/Curzyori/zafkiel-arcade/stargazers)
+[![Forks](https://img.shields.io/github/forks/Curzyori/zafkiel-arcade?style=for-the-badge&color=crimson)](https://github.com/Curzyori/zafkiel-arcade/network/members)
+[![License](https://img.shields.io/badge/License-MIT-gold?style=for-the-badge)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Web%20%7C%20Linux-black?style=for-the-badge)](#)
+
+</div>
+
+<p align="center">
+  <a href="#-why-zafkiel-arcade">Why Zafkiel</a> ·
+  <a href="#-key-features">Features</a> ·
+  <a href="#%EF%B8%8F-architecture">Architecture</a> ·
+  <a href="#-quick-start">Quick Start</a> ·
+  <a href="#-security--logging">Security</a>
+</p>
 
 ---
 
-## 🎭 Game Concept: "City of Devouring Time"
+## 🕒 Why Zafkiel Arcade?
 
-In this arcade environment, time is your greatest resource and your deadliest enemy. You play as the **Emperor of Time**, managing your *Time Essence* while surviving against aggressive temporal anomalies.
+**Zafkiel Arcade** is a high-stakes, time-manipulating survival game inspired by the aesthetic of *Kurumi Tokisaki*. Unlike standard arcade clones, Zafkiel integrates a full **Modular Monolith** backend to track highscores, enforce zero-trust inputs, and stream real-time temporal state.
 
-### ⚔️ Key Mechanics
-- **Temporal Survival**: Your HP (*Time Essence*) drains constantly (-1/s). You must collect **Essence Stars** to survive.
-- **Aggressive Difficulty Scaling**: The longer you survive, the more aggressive the temporal rift becomes. Enemies spawn faster and move quicker as your score increases.
-- **Temporal Skills**: Use the power of Zafkiel to manipulate the battlefield:
-    - 🕒 **REWIND**: Reverse the flow of time to reposition yourself.
-    - ❄️ **FREEZE**: Stop all entities in their tracks for strategic planning.
-    - ⚡ **ACCEL**: Speed up time to quickly harvest resources (High Risk/High Reward).
-    - 🌌 **COLLECT**: A massive temporal vacuum that sucks in all nearby entities.
+|                               |                                                              |
+| ----------------------------- | ------------------------------------------------------------ |
+| 🕒 **Time-Manipulating Play** | Use REWIND, FREEZE, ACCEL, and COLLECT skills to survive.     |
+| 🔒 **Zero-Trust Logic**       | Every game event and payload is validated via Zod schemas.  |
+| 📊 **Real-time Persistence**  | High-performance SQLite database tracks highscores & logs.    |
+| 👹 **Aggressive Scaling**     | Dynamic difficulty algorithms increase anomaly spawn rates. |
+| 🛡️ **Hardened Security**       | Rate-limiting, CORS locks, and secure session management.    |
 
 ---
 
-## 🛠️ Technical Architecture
+## 🎯 Key Features
 
-The project is designed with scalability and security in mind, suitable for a professional portfolio.
+### Game Mechanics
 
-### 🏗️ Core Stack
-- **Frontend**: Vite + React with **Framer Motion** for liquid-smooth animations and **Lucide React** for iconography.
-- **Backend**: **Express.js v5** (Modular Monolith) with structured middleware.
-- **Database**: **PostgreSQL** via **Supabase** for cloud persistence and Vercel compatibility.
-- **Validation**: **Zero-Trust** architecture using **Zod** for schema validation on every API endpoint.
-- **Security**: Implementation of `express-rate-limit` and custom CORS policies to prevent exploitation.
+| Skill / Mechanic | Status | Description |
+| :--- | :---: | :--- |
+| **HP Drain (-1/s)** | ✅ | Constant depletion of *Time Essence*. Collect stars to live. |
+| **REWIND (🕒)** | ✅ | Reverse player trajectory to escape traps or reposition. |
+| **FREEZE (❄️)** | ✅ | Freeze all enemies temporarily to plan strategic moves. |
+| **ACCEL (⚡)** | ✅ | Speed up game-loop speed to harvest resource stars quickly. |
+| **COLLECT (🌌)** | ✅ | Massive black-hole gravitational pull on nearby essence stars. |
+| **Rift Scaling** | ✅ | Enemy speeds and spawn frequencies ramp up over survival time. |
 
-### 📁 Directory Structure
+### Technical Capabilities
+
+| Capability | Status | Description |
+| :--- | :---: | :--- |
+| **Modular Monolith** | ✅ | express.js v5 modular routing keeping logic compartmentalized. |
+| **Native DB Bindings** | ✅ | Native `better-sqlite3` bindings for lightning-fast IO execution. |
+| **Winston Auditor** | ✅ | Audit-trail pipeline capturing every action to persistent JSON. |
+| **Zod API Schema** | ✅ | Strict type-enforcement on incoming requests to prevent cheats. |
+| **Docker Packaging** | ✅ | Multi-stage Docker config ready to run on any VPS. |
+
+---
+
+## 🏗️ Architecture
+
+The codebase separates the layout engine (Frontend UI) from temporal persistence (Backend API) while sharing core validation utilities:
+
 ```text
-Zafkiel-Arcade-1/
+zafkiel-arcade/
 ├── core/
-│   └── engine.js          # Centralized game & time-manipulation logic
+│   └── engine.js          # Time-manipulation mathematical rulesets & tick rate
 ├── interface/
-│   ├── api/               # Secure Express backend (Routes, Controllers, Middleware)
-│   └── web/               # Modern React Frontend (Vite)
+│   ├── api/               # Express backend controllers, security middleware
+│   └── web/               # React SPA client bundle (Vite + Tailwind CSS)
 ├── utils/
-│   ├── validation.js      # Zod-powered input schemas
-│   ├── logger.js          # Structured Winston logging for audit trails
-│   └── errors.js          # Universal error handling wrappers
-├── arcade.db              # Persistent SQLite storage
-└── assets/                # Visual branding & game assets
+│   ├── validation.js      # Zero-trust validation rule files
+│   ├── logger.js          # Winston logger instance (Temporal log outputs)
+│   └── errors.js          # Global HTTP exception interceptors
+├── assets/                # Creative graphics, icons & theme audio files
+├── arcade.db              # Active local SQLite binary database
+└── vercel.json            # Vercel deployment instructions
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-### Prerequisites
-- **Node.js**: v22.x or higher
-- **CPU**: x64 or ARM64 (for `better-sqlite3` native bindings)
+### Option A: Local Development
 
-### Installation & Setup
-
-1. **Clone & Install Dependencies**
-   ```bash
-   git clone https://github.com/Curzyori/Zafkiel-Arcade-1.git
-   cd Zafkiel-Arcade-1
-   npm install
-   ```
-
-2. **Native Build (Crucial for Linux/VPS)**
-   If you are running on a Linux environment, rebuild the native SQLite bindings:
-   ```bash
-   npm rebuild better-sqlite3
-   ```
-
-3. **Configure Environment**
-   Create a `.env` file in the root directory:
-   ```env
-   PORT=3000
-   UPABASE_URL=Supabase URL
-   SUPABASE_ANON_KEY=sb_publishable_Your_Anon_Key
-   ```
-
-### Execution
-
-**Development Mode:**
 ```bash
-# Start Backend & Frontend concurrently
+# Clone the repository
+git clone https://github.com/Curzyori/zafkiel-arcade.git
+cd zafkiel-arcade
+
+# Install production and development dependencies
+npm install
+
+# Rebuild native better-sqlite3 drivers (Crucial for Linux platform)
+npm rebuild better-sqlite3
+
+# Create environment variable lock
+cp .env.example .env
+
+# Run hot-reload backend + Vite client
 npm run dev
 ```
 
-**Production (Docker):**
+### Option B: Docker Container
+
 ```bash
+# Build and package app stack
 docker build -t zafkiel-arcade .
-docker run -p 3000:3000 zafkiel-arcade
+
+# Start container instances mapping live ports
+docker run -d -p 3000:3000 --name zafkiel-instance zafkiel-arcade
 ```
 
 ---
 
-## 📜 Audit & Logging
-The system maintains a **Temporal Log** (Audit Trail) of every major action taken in the engine. Logs are stored in `combined.log` and the `temporal_logs` table in the database, allowing for detailed activity visualization and security monitoring.
+## 🔒 Security & Logging
+
+### Temporal Audit Trails
+Zafkiel records every major database change, highscore submission, and cheat anomaly detected directly to standard outputs and `/error.log` via the Winston engine:
+```json
+{"level":"info","message":"Temporal rewound executed successfully","timestamp":"2026-06-20T11:45:00Z"}
+```
+
+### Input Hardening
+Any client attempting to tamper with coordinates or simulate score updates will be blocked at the network gate. The server enforces a strong schema matching client structure using the Zod engine.
 
 ---
 
-## 🤝 Contributing
-This project is part of a professional portfolio. While it is open-source, it represents a specific architectural vision. Feel free to fork and experiment with your own temporal theories!
+## 📄 License
+This project is released under the **MIT License** — free for educational, personal, and research purposes.
 
-**Embrace the nightmare. Control the clock.** 🕒🌑
+<sub>Built with passion as the 1st Project of the 50 Projects Challenge by **@curzyori**</sub>
